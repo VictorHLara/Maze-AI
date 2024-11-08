@@ -20,6 +20,9 @@ pygame.init()
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Busca em Largura (BFS) - Labirinto com Pygame")
 
+# Fonte para exibir o número de passos
+font = pygame.font.SysFont(None, 36)
+
 # Labirinto 12x12 (1 = caminho, 0 = parede)
 maze = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,7 +38,6 @@ maze = [
     [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
-
 
 # Classe para representar cada célula na grade
 class Cell:
@@ -65,18 +67,22 @@ class Cell:
 def make_grid(maze):
     return [[Cell(i, j, maze[i][j] == 0) for j in range(COLS)] for i in range(ROWS)]
 
-# Desenha a grade na tela
-def draw_grid(win, grid):
+# Desenha a grade e o número de passos na tela
+def draw_grid(win, grid, steps=None):
     win.fill(WHITE)
     for row in grid:
         for cell in row:
             cell.draw(win)
+    if steps is not None:
+        steps_text = font.render(f"Passos: {steps}", True, WHITE)
+        win.blit(steps_text, (10, 10))
     pygame.display.update()
 
-# Algoritmo BFS com verificação de paredes
+# Algoritmo BFS com verificação de paredes e contagem de passos
 def bfs(grid, start, end):
     queue = deque([start])
     start.visited = True
+    steps = 0  # Contador de passos
 
     while queue:
         for event in pygame.event.get():
@@ -84,11 +90,13 @@ def bfs(grid, start, end):
                 pygame.quit()
 
         current = queue.popleft()
+        steps += 1  # Incrementa o contador de passos a cada nova célula visitada
+
         if current == end:
-            return True
+            return steps  # Retorna o total de passos ao final da busca
 
         current.make_visited()
-        draw_grid(win, grid)
+        draw_grid(win, grid, steps)
         time.sleep(0.15)
 
         neighbors = get_neighbors(grid, current)
@@ -97,7 +105,7 @@ def bfs(grid, start, end):
                 neighbor.visited = True
                 queue.append(neighbor)
 
-    return False
+    return steps  # Caso não encontre, retorna o total de passos percorridos
 
 # Função para obter vizinhos de uma célula na ordem: ↑, ←, →, ↓
 def get_neighbors(grid, cell):
@@ -122,16 +130,18 @@ def main(win):
 
     running = True
     started = False
+    steps = None  # Variável para armazenar o total de passos
 
     while running:
-        draw_grid(win, grid)
+        draw_grid(win, grid, steps)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and not started:
                     started = True
-                    bfs(grid, start, end)
+                    steps = bfs(grid, start, end)  # Executa a busca e armazena o número de passos
+
         pygame.display.update()
 
     pygame.quit()
