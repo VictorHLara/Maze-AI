@@ -1,6 +1,7 @@
 import pygame
 from Celula import Cell
-from Configs import ROWS, COLS, WHITE
+from Configs import ROWS, COLS, WHITE, GRAY
+import random
 
 def make_grid(maze, Cell):
     """Cria a grade a partir do labirinto."""
@@ -17,7 +18,7 @@ def draw_grid(win, grid, steps=None, font=None):
         win.blit(steps_text, (10, 10))
     pygame.display.update()
 
-def get_neighbors(grid, cell, rows=ROWS, cols=COLS):
+def get_neighbors_no_noise(grid, cell, rows=ROWS, cols=COLS):
     """Retorna os vizinhos válidos de uma célula."""
     neighbors = []
     if cell.row > 0:  # Cima
@@ -28,4 +29,10 @@ def get_neighbors(grid, cell, rows=ROWS, cols=COLS):
         neighbors.append(grid[cell.row][cell.col + 1])
     if cell.row < rows - 1:  # Baixo
         neighbors.append(grid[cell.row + 1][cell.col])
+    return neighbors
+
+def get_neighbors(grid, cell, rows=ROWS, cols=COLS):
+    neighbors = get_neighbors_no_noise(grid, cell)
+    if random.random() < 0.25:  #25% de chance de movimento inesperado
+        random.shuffle(neighbors)
     return neighbors

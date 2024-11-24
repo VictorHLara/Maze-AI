@@ -23,3 +23,8 @@ class Cell:
     def make_visited(self):
         if not self.is_wall:
             self.color = AMARELO
+
+    def toggle_wall(self):
+        """Alterna o estado da célula entre parede e caminho."""
+        self.is_wall = not self.is_wall
+        self.color = GRAY if self.is_wall else WHITE

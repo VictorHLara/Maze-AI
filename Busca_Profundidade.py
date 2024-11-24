@@ -25,7 +25,7 @@ def dfs(grid, start, end):
 
         current.make_visited()
         draw_grid(win, grid, steps, font)
-        time.sleep(0.15)
+        time.sleep(0.08)
 
         # Obtém os vizinhos na ordem especificada e adiciona na pilha na ordem inversa
         neighbors = get_neighbors(grid, current)
