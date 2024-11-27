@@ -1,6 +1,5 @@
 import pygame
-from Celula import Cell
-from Configs import ROWS, COLS, WHITE, GRAY
+from Configs import ROWS, COLS, WHITE
 import random
 
 def make_grid(maze, Cell):

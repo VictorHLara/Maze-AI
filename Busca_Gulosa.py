@@ -4,7 +4,7 @@ from Mapa import maze
 from Celula import Cell
 from queue import PriorityQueue
 from Utils import make_grid, draw_grid, get_neighbors
-from Configs import WIDTH, HEIGHT, CELL_SIZE, ROWS, COLS, RED, GRAY, WHITE, GREEN, AMARELO, font, win
+from Configs import  font, win
 
 pygame.display.set_caption("Busca Gulosa com Heurística de Chebyshev")
 
@@ -40,7 +40,7 @@ def greedy_chebyshev(grid, start, end):
             return steps  # Retorna o total de passos ao encontrar o objetivo
 
         current.make_visited()
-        draw_grid(win, grid, steps)
+        draw_grid(win, grid, steps, font)
         time.sleep(0.2)
 
         neighbors = get_neighbors(grid, current)
@@ -65,7 +65,7 @@ def main(win):
     steps = None  # Variável para armazenar o total de passos
 
     while running:
-        draw_grid(win, grid, steps)
+        draw_grid(win, grid, steps, font)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False

@@ -1,5 +1,5 @@
 import pygame
-from Configs import WIDTH, HEIGHT, CELL_SIZE, ROWS, COLS, RED, GRAY, WHITE, GREEN, AMARELO
+from Configs import CELL_SIZE, RED, GRAY, WHITE, GREEN, YELLOW
 
 class Cell:
     def __init__(self, row, col, is_wall):
@@ -22,9 +22,4 @@ class Cell:
 
     def make_visited(self):
         if not self.is_wall:
-            self.color = AMARELO
-
-    def toggle_wall(self):
-        """Alterna o estado da célula entre parede e caminho."""
-        self.is_wall = not self.is_wall
-        self.color = GRAY if self.is_wall else WHITE
+            self.color = YELLOW

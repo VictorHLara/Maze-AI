@@ -1,7 +1,7 @@
 import pygame
 import time
 from Celula import Cell
-from Configs import WIDTH, HEIGHT, CELL_SIZE, ROWS, COLS, RED, GRAY, WHITE, GREEN, AMARELO, win, font
+from Configs import win, font
 from Mapa import maze
 from Utils import make_grid, draw_grid, get_neighbors
 
@@ -25,7 +25,7 @@ def dfs(grid, start, end):
 
         current.make_visited()
         draw_grid(win, grid, steps, font)
-        time.sleep(0.08)
+        time.sleep(0.15)
 
         # Obtém os vizinhos na ordem especificada e adiciona na pilha na ordem inversa
         neighbors = get_neighbors(grid, current)

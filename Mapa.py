@@ -1,6 +1,3 @@
-import pygame
-from Configs import ROWS, COLS, WHITE
-from Celula import Cell
 
 # Labirinto 12x12 (1 = caminho, 0 = parede)
 maze = [

@@ -2,7 +2,7 @@ import time
 from collections import deque
 from Mapa import maze
 from Celula import Cell
-from Configs import WIDTH, HEIGHT, CELL_SIZE, ROWS, COLS, RED, GRAY, WHITE, GREEN, AMARELO, font, win
+from Configs import font, win
 from Utils import make_grid, draw_grid, get_neighbors
 import pygame
 
