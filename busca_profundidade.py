@@ -1,9 +1,9 @@
 import pygame
 import time
-from Celula import Cell
-from Configs import win, font
-from Mapa import maze
-from Utils import make_grid, draw_grid, get_neighbors
+from celula import Cell
+from configs import win, font
+from mapa import maze
+from utils import make_grid, draw_grid, get_neighbors
 
 pygame.display.set_caption("Busca em Profundidade")
 

@@ -1,9 +1,9 @@
 import time
 from collections import deque
-from Mapa import maze
-from Celula import Cell
-from Configs import font, win
-from Utils import make_grid, draw_grid, get_neighbors
+from mapa import maze
+from celula import Cell
+from configs import font, win
+from utils import make_grid, draw_grid, get_neighbors
 import pygame
 
 pygame.display.set_caption("Busca em Largura")

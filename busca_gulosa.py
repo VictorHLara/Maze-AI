@@ -1,10 +1,10 @@
 import pygame
 import time
-from Mapa import maze
-from Celula import Cell
+from mapa import maze
+from celula import Cell
 from queue import PriorityQueue
-from Utils import make_grid, draw_grid, get_neighbors
-from Configs import  font, win
+from utils import make_grid, draw_grid, get_neighbors
+from configs import  font, win
 
 pygame.display.set_caption("Busca Gulosa com Heurística de Chebyshev")
 
@@ -41,7 +41,7 @@ def greedy_chebyshev(grid, start, end):
 
         current.make_visited()
         draw_grid(win, grid, steps, font)
-        time.sleep(0.2)
+        time.sleep(0.15)
 
         neighbors = get_neighbors(grid, current)
         for neighbor in neighbors:
