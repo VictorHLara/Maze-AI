@@ -1,5 +1,5 @@
 import pygame
-from Configs import ROWS, COLS, WHITE
+from configs import ROWS, COLS, WHITE
 import random
 
 def make_grid(maze, Cell):

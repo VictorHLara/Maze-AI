@@ -1,5 +1,5 @@
 import pygame
-from Configs import CELL_SIZE, RED, GRAY, WHITE, GREEN, YELLOW
+from configs import CELL_SIZE, RED, GRAY, WHITE, GREEN, YELLOW
 
 class Cell:
     def __init__(self, row, col, is_wall):
